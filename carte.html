@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta http-equi="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equi="Content-Type" content="text/html" charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ta Carte</title>
+    <title>Fais ta carte!</title>
   </head>
   <body>
-    <div>
-      <a href="" title="">Fais ta carte</a>
-      <a href="" title="">Fais ta v-card</a>
-    </div>
-
+    <main>
+      <header>
+        <a href="" title="">Accueil</a>
+      </header>
+      <form action="/script" method="post">
+        <label for="prenom">Prénom:
+          <input type="text" name="prenom" placeholder="Victor" required>
+        </label>
+        <label for="nom">Nom:
+          <input type="text" name="nom" placeholder="Hugo" required>
+        </label>
+        <label for="email"><abbr title="Messagerie électronique en ligne">Mél</abbr>:
+          <input type="text" name="email" multiple placeholder="vic@hu.go" required>
+        </label>
+        <label for="telephone">Téléphone:
+          <input type="text" name="telephone">
+        </label>
+        <button type="submit">C'est bon</button>
+      </form>
+    </main>
+    <footer>
+      <a href="" title="">Détails techniques.</a>
+    </footer>
   </body>
 </html>
