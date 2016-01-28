@@ -18,7 +18,7 @@
           <input type="text" name="nom" placeholder="Hugo" required>
         </label>
         <label for="email"><abbr title="Messagerie électronique en ligne">Mél</abbr>:
-          <input type="text" name="email" multiple placeholder="auteur@lalegendedessiecl.es" required>
+          <input type="text" name="email" multiple placeholder="auteur@lalegendedessiecl.es" pattern="([\w*\d*\.*\-*\_*]*)(\+\w*\d*)?@[\w+\.\w+]*" required>
         </label>
         <label for="telephone">Téléphone:
           <input type="text" name="telephone" placeholder="+33 1793" pattern="(\+\d{1,2})?[\d+\s*]+">
