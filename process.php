@@ -10,20 +10,31 @@
   else $email=""                                      ;
   if(isset($_POST['tel'])) $tel = $_POST['tel']       ;
 
+
+  // test des champs vides
+
   if(empty($nom) OR empty($email) OR empty($email))
   {
     echo '<strong>Attention, tous les champs sont obligatoires. Seul le numéro de téléphone est facultatif.</strong>';
   }
-  else
+  else //on y va
   {
-
     //BDD
 
     //Déterminer les variables pour la base: port, nom utilisateur et mot de passe
-      $dbhost = 'localhost:8888'; //localhost peut suffire si on recherche sur le port par défaut
-      $dbuser = 'admin';
-      $dbpass = 'admin';
+      $dbhost = 'localhost:3306';
+      $db = 'cartes';
+      $dbuser = 'root';
+      $dbpass = 'root';
+      $charset = 'utf8';
+      $dsn = "mysql:host=$dbhost;dbname=$db;charset=$charset";
 
+      $opt = [
+      PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION,
+      PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+      PDO::ATTR_EMULATE_PREPARES   => false,
+      ];
+      $pdo = new PDO($dsn, $dbuser, $dbpass, $opt);
     //Ouverture de la connexion avec la base
       $conn = mysql_connect($dbhost, $dbuser, $dbpass);
     //Si la connexion ne marche pas, message d'erreur
