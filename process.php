@@ -34,33 +34,14 @@
       PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
       PDO::ATTR_EMULATE_PREPARES   => false,
       ];
-      $pdo = new PDO($dsn, $dbuser, $dbpass, $opt);
-    //Ouverture de la connexion avec la base
-      $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-    //Si la connexion ne marche pas, message d'erreur
-      if(! $conn )
-      {
-        die('Désolé, nous avons eu un problème: ' . mysql_error());
-      }
+      $pdo = new PDO($dsn, $dbuser, $dbpass, $opt);   //Ouverture de la connexion avec la base
 
-
-      mysql_select_db('cartes', $conn) ;
-
-      $sql = 'INSERT INTO visiteurs './/nom de la table
+      $stmt = $pdo->prepare('INSERT INTO visiteurs './/nom de la table
             '(prenom, nom, mel, tel) '. //nom des colonnes
-            'VALUES ( $prenom, $nom, $email, $tel )'; //nom des variables
-
-      $retval = mysql_query( $sql, $conn );
-
-         if(! $retval ) {
-            die('Could not enter data: ' . mysql_error());
-         }
-
-         echo "Entered data successfully\n"; //dans un else?
-
-         mysql_close($conn);
-
-
+            'VALUES ( :prenom, :nom, :email, :tel )'; //placeholders
+            )
+      $stmt = execute(['prenom' => $fname, 'nom' => $lname, 'mel' => $mail, 'tel' => $phone]);
+/*
     //Image
 
     $image = imagecreatefrompng("eg.png");
@@ -75,5 +56,8 @@
       mail( "$email", "Fais ta carte! - C'est fait!",
         $message, "From: $email" );
       header( "Location: http://www.example.com/thankyou.html" );
-    ?>
+      */
   }
+
+  register_shutdown_function('shutdown');
+?>
