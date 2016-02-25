@@ -2,18 +2,18 @@
 
 // Récupération des variables
 
-  if(isset($_POST['nom'])) $nom=$_POST['nom']         ;
+  if(isset($_POST['nom'])) $lname=$_POST['nom']         ;
   else $nom=""                                        ;
-  if(isset($_POST['prenom'])) $prenom=$_POST['prenom'];
+  if(isset($_POST['prenom'])) $fname=$_POST['prenom'];
   else $prenom=""                                     ;
-  if(isset($_POST['email'])) $prenom=$_POST['email']  ;
+  if(isset($_POST['email'])) $mail=$_POST['email']  ;
   else $email=""                                      ;
-  if(isset($_POST['tel'])) $tel = $_POST['tel']       ;
+  if(isset($_POST['tel'])) $phone = $_POST['tel']       ;
 
 
   // test des champs vides
 
-  if(empty($nom) OR empty($email) OR empty($email))
+  if(empty($lname) OR empty($fname) OR empty($mail))
   {
     echo '<strong>Attention, tous les champs sont obligatoires. Seul le numéro de téléphone est facultatif.</strong>';
   }
