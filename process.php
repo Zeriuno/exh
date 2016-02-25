@@ -1,5 +1,7 @@
 <?php
 
+// Récupération des variables
+
   if(isset($_POST['nom'])) $nom=$_POST['nom']         ;
   else $nom=""                                        ;
   if(isset($_POST['prenom'])) $prenom=$_POST['prenom'];
@@ -9,6 +11,9 @@
   if(isset($_POST['tel'])) $tel = $_POST['tel']       ;
 
   if(empty())
+
+
+//BDD
 
 //Déterminer les variables pour la base: port, nom utilisateur et mot de passe
   $dbhost = 'localhost:8888'; //localhost peut suffire si on recherche sur le port par défaut
@@ -39,6 +44,17 @@
      echo "Entered data successfully\n"; //dans un else?
 
      mysql_close($conn);
+
+
+//Image
+
+$image = imagecreatefrompng("eg.png");
+
+//écriture de l'image
+
+
+imagepng($image);
+<img src="image.php" />
 
   header()
   mail( "$email", "Fais ta carte! - C'est fait!",
