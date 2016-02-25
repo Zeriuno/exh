@@ -1,35 +1,42 @@
 <?php
-  $prenom = $_REQUEST['prenom'] ;
-  $nom = $_REQUEST['nom']       ;
-  $email = $_REQUEST['email']   ;
-  $tel = $_REQUEST['tel']       ;
 
-/* Déterminer les variables pour la base: port, nom utilisateur et mot de passe
-  $dbhost = 'localhost:3036';
-  $dbuser = 'root';
-  $dbpass = 'rootpassword';
-*/
+  if(isset($_POST['nom'])) $nom=$_POST['nom']         ;
+  else $nom=""                                        ;
+  if(isset($_POST['prenom'])) $prenom=$_POST['prenom'];
+  else $prenom=""                                     ;
+  if(isset($_POST['email'])) $prenom=$_POST['email']  ;
+  else $email=""                                      ;
+  if(isset($_POST['tel'])) $tel = $_POST['tel']       ;
+
+  if(empty())
+
+//Déterminer les variables pour la base: port, nom utilisateur et mot de passe
+  $dbhost = 'localhost:8888'; //localhost peut suffire si on recherche sur le port par défaut
+  $dbuser = 'admin';
+  $dbpass = 'admin';
+
 //Ouverture de la connexion avec la base
   $conn = mysql_connect($dbhost, $dbuser, $dbpass);
-//Si la connexion ne marche pas, affichage d'un message d'erreur
+//Si la connexion ne marche pas, message d'erreur
   if(! $conn )
   {
     die('Désolé, nous avons eu un problème: ' . mysql_error());
   }
 
 
-  $sql = 'INSERT INTO cartes './/nom de la base
-        '(lname, fname, email, phone) '. //nom des colonnes
-        'VALUES ( $nom, $prenom, $email, $tel )'; //nom des variables
+  mysql_select_db('cartes', $conn) ;
 
-     mysql_select_db('test_db');
-     $retval = mysql_query( $sql, $conn );
+  $sql = 'INSERT INTO visiteurs './/nom de la table
+        '(prenom, nom, mel, tel) '. //nom des colonnes
+        'VALUES ( $prenom, $nom, $email, $tel )'; //nom des variables
+
+  $retval = mysql_query( $sql, $conn );
 
      if(! $retval ) {
         die('Could not enter data: ' . mysql_error());
      }
 
-     echo "Entered data successfully\n";
+     echo "Entered data successfully\n"; //dans un else?
 
      mysql_close($conn);
 
